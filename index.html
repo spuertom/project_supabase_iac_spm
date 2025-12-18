@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo Supabase + Netlify (HTML)</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <header class="header">
+      <h1>Registros</h1>
+      <p class="muted">HTML puro + Supabase (Postgres) + Deploy en Netlify desde GitHub.</p>
+    </header>
+
+    <section class="card">
+      <h2>Crear registro</h2>
+
+      <form id="form">
+        <div class="grid">
+          <label>
+            <span>Título</span>
+            <input id="titulo" type="text" required minlength="3" maxlength="60" placeholder="Ej: Compra de insumos" />
+          </label>
+
+          <label>
+            <span>Descripción</span>
+            <input id="descripcion" type="text" required minlength="5" maxlength="120" placeholder="Ej: Pedido para laboratorio" />
+          </label>
+        </div>
+
+        <div class="row">
+          <button id="btnCrear" type="submit">Guardar</button>
+          <span id="status" class="muted"></span>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="row between">
+        <h2>Lista</h2>
+        <button id="btnRefrescar" class="ghost" type="button">Refrescar</button>
+      </div>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 80px;">ID</th>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th style="width: 180px;">Fecha</th>
+              <th style="width: 110px;">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="5" class="muted">Cargando…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer class="footer muted">
+      Nota: Para demo pública se habilitó RLS con políticas abiertas (select/insert/delete). En producción se recomienda Auth + políticas por usuario.
+    </footer>
+  </main>
+
+  <!-- CONFIG: pega aquí tu URL y ANON KEY de Supabase -->
+  <script>
+    window.SUPABASE_URL = "https://zzynrvtqdlcvyvucangw.supabase.co";
+    window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp6eW5ydnRxZGxjdnl2dWNhbmd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYwNzYwNTEsImV4cCI6MjA4MTY1MjA1MX0.fQSf15KXBKbLTnh_R4ZmJBC4o0K0SAguv7-nHDTbyIQ";
+  </script>
+
+  <!-- SDK Supabase -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
